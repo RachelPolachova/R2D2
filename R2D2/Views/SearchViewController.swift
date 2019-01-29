@@ -25,10 +25,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
     }
     
     // MARK: result VC
@@ -40,9 +36,6 @@ class SearchViewController: UIViewController {
             print(urlString)
             getRequest(urlString: urlString)
         }
-        
-        
-        
         
         dispatchGroup.notify(queue: .main) {
             self.performSegue(withIdentifier: "goToResultsSegue", sender: nil)
@@ -64,8 +57,6 @@ class SearchViewController: UIViewController {
         dispatchGroup.enter()
         
         print("get request called")
-        
-        
         
         guard let url = URL(string: urlString) else {
             return
@@ -98,7 +89,6 @@ class SearchViewController: UIViewController {
                     print("No attribute")
                 }
                 
-                
             }
             self.dispatchGroup.leave()
         }
@@ -115,6 +105,7 @@ class SearchViewController: UIViewController {
             let persons = try decoder.decode(PersonsResult.self, from: data)
             
             
+            // check if it's first page, if not, just append persons.
             if persons.previous != nil {
                 var res = results as! PersonsResult
                 for item in persons.results {
@@ -122,7 +113,7 @@ class SearchViewController: UIViewController {
                 }
                 results = res
             } else {
-                //first page
+                
                 results = persons
             }
             

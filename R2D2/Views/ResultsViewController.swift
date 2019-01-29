@@ -15,8 +15,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
     
-    var resultsArray = [String]()
-    var resultObjectsArray = [Any]()
+    var resultsNameArray = [String]()
     var selectedResult: Any?
     var results: Any?
     var attributeValue = ""
@@ -25,28 +24,22 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let res = results as? PersonResult {
-//            print("name of res in resultVC: \(res.results[0].name)")
-//        }
-        
         processResult()
-        
-        print("results in results vc: \(results)")
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultObjectsArray.count
+        return resultsNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultsCell", for: indexPath)
-        cell.textLabel?.text = resultsArray[indexPath.row]
+        cell.textLabel?.text = resultsNameArray[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected: \(resultsArray[indexPath.row])")
+        print("selected: \(resultsNameArray[indexPath.row])")
         
         switch results {
         case let res as PersonsResult:
@@ -107,33 +100,27 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch results {
         case let res as PersonsResult:
             for item in res.results {
-                resultsArray.append(item.name)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.name)
             }
         case let res as FilmsResult:
             for item in res.results {
-                resultsArray.append(item.title)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.title)
             }
         case let res as SpeciesResult:
             for item in res.results {
-                resultsArray.append(item.name)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.name)
             }
         case let res as PlanetsResult:
             for item in res.results {
-                resultsArray.append(item.name)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.name)
             }
         case let res as VehiclesResult:
             for item in res.results {
-                resultsArray.append(item.name)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.name)
             }
         case let res as StarshipsResult:
             for item in res.results {
-                resultsArray.append(item.name)
-                resultObjectsArray.append(res)
+                resultsNameArray.append(item.name)
             }
         default:
             print("default")
