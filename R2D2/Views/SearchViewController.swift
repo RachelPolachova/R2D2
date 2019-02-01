@@ -15,19 +15,27 @@ class SearchViewController: UIViewController {
     
 
     @IBOutlet weak var searchInput: UITextField!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     var attributeValue = ""
     var results: Any?
     var nextPage = false
-    
-    // go to result VC after all data are loaded
     let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setActivityViewUI(activityView: activityView)
+        
     }
     
     // MARK: result VC
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let resultsVC = segue.destination as! ResultsViewController
+        resultsVC.attributeValue = attributeValue
+        resultsVC.results = results
+    }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
         
@@ -38,23 +46,22 @@ class SearchViewController: UIViewController {
         }
         
         dispatchGroup.notify(queue: .main) {
+            self.activityView.stopAnimating()
+            self.activityView.isHidden = true
             self.performSegue(withIdentifier: "goToResultsSegue", sender: nil)
         }
         
-    
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let resultsVC = segue.destination as! ResultsViewController
-        resultsVC.attributeValue = attributeValue
-        resultsVC.results = results
-    }
     
     //    MARK: API methods
     
     func getRequest(urlString: String) {
         
         dispatchGroup.enter()
+        activityView.isHidden = false
+        activityView.startAnimating()
+        
         
         print("get request called")
         
@@ -67,10 +74,6 @@ class SearchViewController: UIViewController {
             print("Response: \(String(describing: response.response))")
             print("Result: \(response.result)")
             
-            if let json = response.result.value {
-                print("JSON: \(json)")
-                
-            }
             
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -80,7 +83,7 @@ class SearchViewController: UIViewController {
                 switch self.attributeValue {
                     
                 case "people": self.parsePersonJSON(data: data, decoder: decoder)
-                case "films": self.parseFilmJSON(data: data, decoder: decoder)
+                case "films": self.parseFilmsResultJSON(data: data, decoder: decoder)
                 case "planets": self.parsePlanetJSON(data: data, decoder: decoder)
                 case "species": self.parseSpecieJSON(data: data, decoder: decoder)
                 case "starships": self.parseStarshipJSON(data: data, decoder: decoder)
@@ -91,8 +94,8 @@ class SearchViewController: UIViewController {
                 
             }
             self.dispatchGroup.leave()
+            
         }
-        
         
     }
     
@@ -126,7 +129,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func parseFilmJSON(data: Data, decoder: JSONDecoder) {
+    func parseFilmsResultJSON(data: Data, decoder: JSONDecoder) {
         do {
             let films = try decoder.decode(FilmsResult.self, from: data)
             

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,16 +16,22 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
+    
     var resultsNameArray = [String]()
+    var personsFilmsArray = [String]()
     var selectedResult: Any?
     var results: Any?
     var attributeValue = ""
-    
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         processResult()
+        
+        setActivityViewUI(activityView: activityView)
+        
         
     }
     
@@ -43,8 +50,21 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch results {
         case let res as PersonsResult:
+            
             selectedResult = res.results[indexPath.row]
-            performSegue(withIdentifier: "goToPersonSegue", sender: nil)
+            personsFilmsArray.removeAll()
+            
+            for filmUrl in res.results[indexPath.row].films {
+                getPersonsFilms(urlString: filmUrl)
+            }
+            
+            
+            dispatchGroup.notify(queue: .main) {
+                self.activityView.stopAnimating()
+                self.activityView.isHidden = true
+                self.performSegue(withIdentifier: "goToPersonSegue", sender: nil)
+            }
+            
         case let res as FilmsResult:
             selectedResult = res.results[indexPath.row]
             performSegue(withIdentifier: "goToFilmSegue", sender: nil)
@@ -66,12 +86,39 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func getPersonsFilms(urlString : String) {
+        dispatchGroup.enter()
+        
+        activityView.startAnimating()
+        activityView.isHidden = false
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        Alamofire.request(url).responseJSON { (response) in
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            if let data = response.data {
+                do {
+                    let film = try decoder.decode(Film.self, from: data)
+                    self.personsFilmsArray.append(film.title)
+                } catch let err {
+                    print("Error while decoding person's film: \(err)")
+                }
+            }
+            self.dispatchGroup.leave()
+        }
+        
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
         case "goToPersonSegue":
             let vc = segue.destination as! PersonViewController
             vc.selectedPerson = selectedResult as? Person
+            vc.personsFilms = personsFilmsArray
         case "goToFilmSegue":
             let vc = segue.destination as! FilmViewController
             vc.selectedFilm = selectedResult as? Film
