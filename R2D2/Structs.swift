@@ -13,6 +13,7 @@ struct Character: Decodable {
     let birthYear: String
     let height: String
     let films: [String]
+    let species: [String]
     
 }
 
@@ -27,6 +28,7 @@ struct Film: Decodable {
     let title: String
     let episodeId: Int
     let releaseDate: String
+    let url: String
 }
 
 struct FilmsResult: Decodable {
@@ -65,6 +67,7 @@ struct Specie: Decodable {
     let name: String
     let classification: String
     let averageHeight: String
+    let url: String
 }
 
 struct SpeciesResult: Decodable {

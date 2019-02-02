@@ -15,25 +15,30 @@ class CharactersInfoCollectionViewCell: UICollectionViewCell {
         setupView()
     }
     
-    let nameLabel: UILabel = {
-       
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.textColor = .black
-        label.text = "Custom cell"
+    let nameTextView: UITextView = {
         
-        return label
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .center
+        textView.backgroundColor = nil
+        textView.textColor = .white
+        textView.font = .systemFont(ofSize: 18)
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.text = "Custom cell"
+        
+        return textView
+        
     }()
     
     func setupView() {
         
-        addSubview(nameLabel)
+        addSubview(nameTextView)
         
-        nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        nameTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        nameTextView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+//        nameTextView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        nameTextView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
     }
     

@@ -16,23 +16,20 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var activityView: UIActivityIndicatorView!
-    
     var resultsNameArray = [String]()
-    var charactersFilmsArray = [String]()
+    var charactersFilmsArray = [Film]()
+    var charactersSpeciesArray = [Specie]()
     var selectedResult: Any?
     var results: Any?
     var attributeValue = ""
     let dispatchGroup = DispatchGroup()
+    var activityView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         processResult()
-        
-        setActivityViewUI(activityView: activityView)
-        
-        
+        activityView = setActivityView()
+        activityView?.isHidden = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,11 +55,16 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 getCharactersFilms(urlString: filmUrl)
             }
             
+            for specieUrl in res.results[indexPath.row].species {
+                getCaractersSpecie(urlString: specieUrl)
+            }
+            
             
             dispatchGroup.notify(queue: .main) {
-                self.activityView.stopAnimating()
-                self.activityView.isHidden = true
+                
+                self.activityView?.isHidden = true
                 self.performSegue(withIdentifier: "goToCharacterSegue", sender: nil)
+                
             }
             
         case let res as FilmsResult:
@@ -88,20 +90,18 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getCharactersFilms(urlString : String) {
         dispatchGroup.enter()
-        
-        activityView.startAnimating()
-        activityView.isHidden = false
+        activityView?.isHidden = false
         
         guard let url = URL(string: urlString) else { return }
         
         Alamofire.request(url).responseJSON { (response) in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             if let data = response.data {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
                     let film = try decoder.decode(Film.self, from: data)
-                    self.charactersFilmsArray.append(film.title)
+                    self.charactersFilmsArray.append(film)
                 } catch let err {
                     print("Error while decoding character's film: \(err)")
                 }
@@ -109,6 +109,27 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.dispatchGroup.leave()
         }
         
+    }
+    
+    func getCaractersSpecie(urlString: String) {
+        dispatchGroup.enter()
+        activityView?.isHidden = false
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        Alamofire.request(url).responseJSON { (response) in
+            if let data = response.data {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let specie = try decoder.decode(Specie.self, from: data)
+                    self.charactersSpeciesArray.append(specie)
+                } catch let err {
+                    print("Error while decoding character's specie: \(err)")
+                }
+            }
+            self.dispatchGroup.leave()
+        }
     }
     
     
@@ -119,6 +140,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let vc = segue.destination as! CharacterViewController
             vc.selectedCharacter = selectedResult as? Character
             vc.charactersFilms = charactersFilmsArray
+            vc.charactersSpecies = charactersSpeciesArray
         case "goToFilmSegue":
             let vc = segue.destination as! FilmViewController
             vc.selectedFilm = selectedResult as? Film

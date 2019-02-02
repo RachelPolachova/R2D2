@@ -18,6 +18,8 @@ class SpecieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("In specieVC: selected is: \(selectedSpecie?.name)")
 
         setUI()
     }

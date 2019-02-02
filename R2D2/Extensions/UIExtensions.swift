@@ -8,10 +8,19 @@
 
 import UIKit
 
-func setActivityViewUI(activityView: UIActivityIndicatorView) {
+extension UIViewController {
+
+    func setActivityView() -> UIView {
+        let activityView = UIView.init(frame: self.view.bounds)
+        activityView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        activityIndicator.startAnimating()
+        activityIndicator.center = activityView.center
+        activityView.addSubview(activityIndicator)
+        view.addSubview(activityView)
+        
+        return activityView
+        
+    }
     
-    activityView.isHidden = true
-    activityView.backgroundColor = UIColor(hexString: "#545454", alpha: 0.7)
-    activityView.clipsToBounds = true
-    activityView.layer.cornerRadius = 10
 }

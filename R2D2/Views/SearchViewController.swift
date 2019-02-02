@@ -15,18 +15,18 @@ class SearchViewController: UIViewController {
     
 
     @IBOutlet weak var searchInput: UITextField!
-    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     var attributeValue = ""
     var results: Any?
     var nextPage = false
     let dispatchGroup = DispatchGroup()
+    var activityView: UIView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setActivityViewUI(activityView: activityView)
-        
+        activityView = setActivityView()
+        activityView?.isHidden = true
     }
     
     // MARK: result VC
@@ -46,8 +46,7 @@ class SearchViewController: UIViewController {
         }
         
         dispatchGroup.notify(queue: .main) {
-            self.activityView.stopAnimating()
-            self.activityView.isHidden = true
+            self.activityView?.isHidden = true
             self.performSegue(withIdentifier: "goToResultsSegue", sender: nil)
         }
         
@@ -59,8 +58,7 @@ class SearchViewController: UIViewController {
     func getRequest(urlString: String) {
         
         dispatchGroup.enter()
-        activityView.isHidden = false
-        activityView.startAnimating()
+        activityView?.isHidden = false
         
         
         guard let url = URL(string: urlString) else {
