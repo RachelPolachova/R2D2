@@ -11,9 +11,9 @@
 		CC30BB5D21FA4D3E0012BB87 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC30BB5C21FA4D3E0012BB87 /* Structs.swift */; };
 		CCA12EB822049F480096D077 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EB722049F480096D077 /* UIColorExtenstion.swift */; };
 		CCA12EBB2204A0DE0096D077 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EBA2204A0DE0096D077 /* UIExtensions.swift */; };
-		CCA12EBE2204A9120096D077 /* PersonsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EBD2204A9120096D077 /* PersonsInfoCollectionViewCell.swift */; };
+		CCA12EBE2204A9120096D077 /* CharactersInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EBD2204A9120096D077 /* CharactersInfoCollectionViewCell.swift */; };
 		CCAA34B322009417003EDA77 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34B222009417003EDA77 /* ResultsViewController.swift */; };
-		CCAA34B52200CC36003EDA77 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34B42200CC36003EDA77 /* PersonViewController.swift */; };
+		CCAA34B52200CC36003EDA77 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34B42200CC36003EDA77 /* CharacterViewController.swift */; };
 		CCAA34B72200CC67003EDA77 /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34B62200CC67003EDA77 /* FilmViewController.swift */; };
 		CCAA34B92200CC6F003EDA77 /* StarshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34B82200CC6F003EDA77 /* StarshipViewController.swift */; };
 		CCAA34BB2200CC76003EDA77 /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAA34BA2200CC76003EDA77 /* VehicleViewController.swift */; };
@@ -34,9 +34,9 @@
 		CC30BB5C21FA4D3E0012BB87 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		CCA12EB722049F480096D077 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		CCA12EBA2204A0DE0096D077 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
-		CCA12EBD2204A9120096D077 /* PersonsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		CCA12EBD2204A9120096D077 /* CharactersInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		CCAA34B222009417003EDA77 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
-		CCAA34B42200CC36003EDA77 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		CCAA34B42200CC36003EDA77 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		CCAA34B62200CC67003EDA77 /* FilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
 		CCAA34B82200CC6F003EDA77 /* StarshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipViewController.swift; sourceTree = "<group>"; };
 		CCAA34BA2200CC76003EDA77 /* VehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				CCC11CEB21F8E0E800395D85 /* AttributeCollectionViewCell.swift */,
-				CCA12EBD2204A9120096D077 /* PersonsInfoCollectionViewCell.swift */,
+				CCA12EBD2204A9120096D077 /* CharactersInfoCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -132,7 +132,7 @@
 				CCC11CDB21F8DA9500395D85 /* ViewController.swift */,
 				CCCBACE921FA29E20070A91F /* SearchViewController.swift */,
 				CCAA34B222009417003EDA77 /* ResultsViewController.swift */,
-				CCAA34B42200CC36003EDA77 /* PersonViewController.swift */,
+				CCAA34B42200CC36003EDA77 /* CharacterViewController.swift */,
 				CCAA34B62200CC67003EDA77 /* FilmViewController.swift */,
 				CCAA34B82200CC6F003EDA77 /* StarshipViewController.swift */,
 				CCAA34BA2200CC76003EDA77 /* VehicleViewController.swift */,
@@ -269,7 +269,7 @@
 				CCA12EB822049F480096D077 /* UIColorExtenstion.swift in Sources */,
 				CCC11CEC21F8E0E800395D85 /* AttributeCollectionViewCell.swift in Sources */,
 				CCC11CDC21F8DA9500395D85 /* ViewController.swift in Sources */,
-				CCA12EBE2204A9120096D077 /* PersonsInfoCollectionViewCell.swift in Sources */,
+				CCA12EBE2204A9120096D077 /* CharactersInfoCollectionViewCell.swift in Sources */,
 				CCAA34B72200CC67003EDA77 /* FilmViewController.swift in Sources */,
 				CC30BB5D21FA4D3E0012BB87 /* Structs.swift in Sources */,
 				CCCBACEA21FA29E20070A91F /* SearchViewController.swift in Sources */,
@@ -277,7 +277,7 @@
 				CCAA34BF2200CC86003EDA77 /* PlanetViewController.swift in Sources */,
 				CCAA34BD2200CC7F003EDA77 /* SpecieViewController.swift in Sources */,
 				CCAA34B322009417003EDA77 /* ResultsViewController.swift in Sources */,
-				CCAA34B52200CC36003EDA77 /* PersonViewController.swift in Sources */,
+				CCAA34B52200CC36003EDA77 /* CharacterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  PersonsInfoCollectionViewCell.swift
+//  CharactersInfoCollectionViewCell.swift
 //  R2D2
 //
 //  Created by Ráchel Polachová on 01/02/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonsInfoCollectionViewCell: UICollectionViewCell {
+class CharactersInfoCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

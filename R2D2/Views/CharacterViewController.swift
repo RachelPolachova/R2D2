@@ -1,5 +1,5 @@
 //
-//  PersonViewController.swift
+//  CharacterViewController.swift
 //  R2D2
 //
 //  Created by Ráchel Polachová on 29/01/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonViewController: UIViewController{
+class CharacterViewController: UIViewController{
     
     
 
@@ -17,8 +17,8 @@ class PersonViewController: UIViewController{
     @IBOutlet weak var heightLabel: UILabel!
     
     
-    var selectedPerson: Person?
-    var personsFilms = [String]()
+    var selectedCharacter: Character?
+    var charactersFilms = [String]()
     let radomArray = ["1st", "blahdawhw", "abrakadabra"]
     
     
@@ -44,7 +44,7 @@ class PersonViewController: UIViewController{
         
         filmsCollection.delegate = self
         filmsCollection.dataSource = self
-        filmsCollection.register(PersonsInfoCollectionViewCell.self, forCellWithReuseIdentifier: filmsCollectionIdentifier)
+        filmsCollection.register(CharactersInfoCollectionViewCell.self, forCellWithReuseIdentifier: filmsCollectionIdentifier)
         self.view.addSubview(filmsCollection)
         setupCollection()
         
@@ -62,24 +62,24 @@ class PersonViewController: UIViewController{
     
     
     func setUI() {
-        nameLabel.text = selectedPerson?.name
-        birthYearLabel.text = selectedPerson?.birthYear
-        heightLabel.text = selectedPerson?.height
+        nameLabel.text = selectedCharacter?.name
+        birthYearLabel.text = selectedCharacter?.birthYear
+        heightLabel.text = selectedCharacter?.height
     }
 
 }
 
-extension PersonViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return personsFilms.count
+        return charactersFilms.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmsCollectionIdentifier, for: indexPath) as! PersonsInfoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmsCollectionIdentifier, for: indexPath) as! CharactersInfoCollectionViewCell
         
         cell.backgroundColor = .gray
-        cell.nameLabel.text = personsFilms[indexPath.row]
+        cell.nameLabel.text = charactersFilms[indexPath.row]
         
         return cell
     }

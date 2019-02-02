@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     var resultsNameArray = [String]()
-    var personsFilmsArray = [String]()
+    var charactersFilmsArray = [String]()
     var selectedResult: Any?
     var results: Any?
     var attributeValue = ""
@@ -49,20 +49,20 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("selected: \(resultsNameArray[indexPath.row])")
         
         switch results {
-        case let res as PersonsResult:
+        case let res as CharactersResult:
             
             selectedResult = res.results[indexPath.row]
-            personsFilmsArray.removeAll()
+            charactersFilmsArray.removeAll()
             
             for filmUrl in res.results[indexPath.row].films {
-                getPersonsFilms(urlString: filmUrl)
+                getCharactersFilms(urlString: filmUrl)
             }
             
             
             dispatchGroup.notify(queue: .main) {
                 self.activityView.stopAnimating()
                 self.activityView.isHidden = true
-                self.performSegue(withIdentifier: "goToPersonSegue", sender: nil)
+                self.performSegue(withIdentifier: "goToCharacterSegue", sender: nil)
             }
             
         case let res as FilmsResult:
@@ -86,7 +86,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func getPersonsFilms(urlString : String) {
+    func getCharactersFilms(urlString : String) {
         dispatchGroup.enter()
         
         activityView.startAnimating()
@@ -101,9 +101,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let data = response.data {
                 do {
                     let film = try decoder.decode(Film.self, from: data)
-                    self.personsFilmsArray.append(film.title)
+                    self.charactersFilmsArray.append(film.title)
                 } catch let err {
-                    print("Error while decoding person's film: \(err)")
+                    print("Error while decoding character's film: \(err)")
                 }
             }
             self.dispatchGroup.leave()
@@ -115,10 +115,10 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case "goToPersonSegue":
-            let vc = segue.destination as! PersonViewController
-            vc.selectedPerson = selectedResult as? Person
-            vc.personsFilms = personsFilmsArray
+        case "goToCharacterSegue":
+            let vc = segue.destination as! CharacterViewController
+            vc.selectedCharacter = selectedResult as? Character
+            vc.charactersFilms = charactersFilmsArray
         case "goToFilmSegue":
             let vc = segue.destination as! FilmViewController
             vc.selectedFilm = selectedResult as? Film
@@ -145,7 +145,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func processResult() {
         
         switch results {
-        case let res as PersonsResult:
+        case let res as CharactersResult:
             for item in res.results {
                 resultsNameArray.append(item.name)
             }

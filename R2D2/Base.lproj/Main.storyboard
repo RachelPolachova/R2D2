@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsCell" id="WSL-5m-MCw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resultsCell" id="WSL-5m-MCw">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WSL-5m-MCw" id="vPs-36-2Rs">
@@ -187,7 +187,7 @@
                         <segue destination="cn0-m5-Ib9" kind="show" identifier="goToVehicleSegue" id="weS-5f-L6h"/>
                         <segue destination="AQ4-sU-OEN" kind="show" identifier="goToSpecieSegue" id="NUp-gr-JBN"/>
                         <segue destination="fmV-gd-H0c" kind="show" identifier="goToPlanetSegue" id="7vz-te-mhc"/>
-                        <segue destination="oJc-7l-RHp" kind="show" identifier="goToPersonSegue" id="Z8C-VX-C4c"/>
+                        <segue destination="oJc-7l-RHp" kind="show" identifier="goToCharacterSegue" id="Z8C-VX-C4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFw-8v-GPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,10 +429,10 @@
             </objects>
             <point key="canvasLocation" x="2366" y="883"/>
         </scene>
-        <!--Person View Controller-->
+        <!--Character View Controller-->
         <scene sceneID="qm4-jL-Qr3">
             <objects>
-                <viewController storyboardIdentifier="personInfoSb" id="oJc-7l-RHp" customClass="PersonViewController" customModule="R2D2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personInfoSb" id="oJc-7l-RHp" customClass="CharacterViewController" customModule="R2D2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bTE-Ju-bsC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

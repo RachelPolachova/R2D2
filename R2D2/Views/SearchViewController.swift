@@ -63,8 +63,6 @@ class SearchViewController: UIViewController {
         activityView.startAnimating()
         
         
-        print("get request called")
-        
         guard let url = URL(string: urlString) else {
             return
         }
@@ -82,45 +80,43 @@ class SearchViewController: UIViewController {
                 
                 switch self.attributeValue {
                     
-                case "people": self.parsePersonJSON(data: data, decoder: decoder)
+                case "people": self.parseCharactersJSON(data: data, decoder: decoder)
                 case "films": self.parseFilmsResultJSON(data: data, decoder: decoder)
-                case "planets": self.parsePlanetJSON(data: data, decoder: decoder)
-                case "species": self.parseSpecieJSON(data: data, decoder: decoder)
-                case "starships": self.parseStarshipJSON(data: data, decoder: decoder)
-                case "vehicles": self.parseVehicleJSON(data: data, decoder: decoder)
+                case "planets": self.parsePlanetsJSON(data: data, decoder: decoder)
+                case "species": self.parseSpeciesJSON(data: data, decoder: decoder)
+                case "starships": self.parseStarshipsJSON(data: data, decoder: decoder)
+                case "vehicles": self.parseVehiclesJSON(data: data, decoder: decoder)
                 default:
                     print("No attribute")
                 }
                 
             }
             self.dispatchGroup.leave()
-            
         }
-        
     }
     
     
     // parse JSON methods
     
-    func parsePersonJSON(data: Data, decoder: JSONDecoder) {
+    func parseCharactersJSON(data: Data, decoder: JSONDecoder) {
         do {
             
-            let persons = try decoder.decode(PersonsResult.self, from: data)
+            let characters = try decoder.decode(CharactersResult.self, from: data)
             
             
             // check if it's first page, if not, just append persons.
-            if persons.previous != nil {
-                var res = results as! PersonsResult
-                for item in persons.results {
+            if characters.previous != nil {
+                var res = results as! CharactersResult
+                for item in characters.results {
                     res.results.append(item)
                 }
                 results = res
             } else {
                 
-                results = persons
+                results = characters
             }
             
-            if let nextPageUrl = persons.next {
+            if let nextPageUrl = characters.next {
                 getRequest(urlString: nextPageUrl)
             }
             
@@ -152,7 +148,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func parseStarshipJSON(data: Data, decoder: JSONDecoder) {
+    func parseStarshipsJSON(data: Data, decoder: JSONDecoder) {
         do {
             let starships = try decoder.decode(StarshipsResult.self, from: data)
             
@@ -175,7 +171,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func parsePlanetJSON(data: Data, decoder: JSONDecoder) {
+    func parsePlanetsJSON(data: Data, decoder: JSONDecoder) {
         do {
             let planets = try decoder.decode(PlanetsResult.self, from: data)
             
@@ -198,7 +194,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func parseSpecieJSON(data: Data, decoder: JSONDecoder) {
+    func parseSpeciesJSON(data: Data, decoder: JSONDecoder) {
         do {
             let species = try decoder.decode(SpeciesResult.self, from: data)
             
@@ -222,7 +218,7 @@ class SearchViewController: UIViewController {
         
     }
     
-    func parseVehicleJSON(data: Data, decoder: JSONDecoder) {
+    func parseVehiclesJSON(data: Data, decoder: JSONDecoder) {
         do {
             let vehicles = try decoder.decode(VehiclesResult.self, from: data)
             

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Person: Decodable {
+struct Character: Decodable {
     let name: String
     let birthYear: String
     let height: String
@@ -16,11 +16,11 @@ struct Person: Decodable {
     
 }
 
-struct PersonsResult: Decodable {
+struct CharactersResult: Decodable {
     let count: Int
     let next: String?
     let previous: String?
-    var results: [Person]
+    var results: [Character]
 }
 
 struct Film: Decodable {
