@@ -9,24 +9,50 @@
 import UIKit
 
 class FilmViewController: UIViewController {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var episodeIdLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
     
     var selectedFilm: Film?
+    
+    var titleTextView = TitleTextView()
+    var episodeIdLabel = DescriptionLabel()
+    var releaseDateLabel = DescriptionLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addSubview(titleTextView)
+        self.view.addSubview(episodeIdLabel)
+        self.view.addSubview(releaseDateLabel)
         
+        setupLayout()
         setUI()
     }
     
+    func setupLayout() {
+        
+        titleTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        titleTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        titleTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10).isActive = true
+        
+        episodeIdLabel.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 15).isActive = true
+        episodeIdLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        episodeIdLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10).isActive = true
+        
+        releaseDateLabel.topAnchor.constraint(equalTo: episodeIdLabel.bottomAnchor, constant: 15).isActive = true
+        releaseDateLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        releaseDateLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 10).isActive = true
+        
+    }
+    
     func setUI() {
-        titleLabel.text = selectedFilm?.title
-        episodeIdLabel.text = "\(String(describing: selectedFilm?.episodeId))"
-        releaseDateLabel.text = selectedFilm?.releaseDate
+        if let film = selectedFilm {
+            titleTextView.text = film.title
+            episodeIdLabel.text = "Episode id: \(film.episodeId)"
+            releaseDateLabel.text = "Release date: \(film.releaseDate)"
+        } else {
+            titleTextView.text = "No film selected."
+            episodeIdLabel.text = ""
+            releaseDateLabel.text = ""
+        }
     }
 
 }

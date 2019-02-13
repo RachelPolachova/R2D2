@@ -179,45 +179,9 @@
                     <view key="view" contentMode="scaleToFill" id="ewJ-bs-7bC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown film title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8W-eU-0SW">
-                                <rect key="frame" x="0.0" y="114" width="375" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unknown episode id" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCb-op-f3v">
-                                <rect key="frame" x="0.0" y="200" width="375" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unknown release date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9J1-NH-c0h">
-                                <rect key="frame" x="0.0" y="271" width="375" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="RtX-Of-pXA" firstAttribute="trailing" secondItem="9J1-NH-c0h" secondAttribute="trailing" id="3Jf-me-fkn"/>
-                            <constraint firstItem="YCb-op-f3v" firstAttribute="top" secondItem="A8W-eU-0SW" secondAttribute="bottom" constant="50" id="6BB-mJ-c69"/>
-                            <constraint firstItem="RtX-Of-pXA" firstAttribute="trailing" secondItem="A8W-eU-0SW" secondAttribute="trailing" id="A9E-VK-bbW"/>
-                            <constraint firstItem="RtX-Of-pXA" firstAttribute="trailing" secondItem="YCb-op-f3v" secondAttribute="trailing" id="JbF-Or-UNP"/>
-                            <constraint firstItem="A8W-eU-0SW" firstAttribute="top" secondItem="RtX-Of-pXA" secondAttribute="top" constant="50" id="Toq-3z-cKG"/>
-                            <constraint firstItem="9J1-NH-c0h" firstAttribute="leading" secondItem="RtX-Of-pXA" secondAttribute="leading" id="brq-8z-Qx5"/>
-                            <constraint firstItem="A8W-eU-0SW" firstAttribute="leading" secondItem="RtX-Of-pXA" secondAttribute="leading" id="dXn-FI-5kd"/>
-                            <constraint firstItem="9J1-NH-c0h" firstAttribute="top" secondItem="YCb-op-f3v" secondAttribute="bottom" constant="50" id="gjC-eo-Bj9"/>
-                            <constraint firstItem="YCb-op-f3v" firstAttribute="leading" secondItem="RtX-Of-pXA" secondAttribute="leading" id="rC4-jw-xaG"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RtX-Of-pXA"/>
                     </view>
-                    <connections>
-                        <outlet property="episodeIdLabel" destination="YCb-op-f3v" id="pi7-jX-VYp"/>
-                        <outlet property="releaseDateLabel" destination="9J1-NH-c0h" id="ToW-t9-pEh"/>
-                        <outlet property="titleLabel" destination="A8W-eU-0SW" id="Cun-im-Se5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTH-cU-kPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

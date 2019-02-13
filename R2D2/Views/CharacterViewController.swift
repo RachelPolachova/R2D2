@@ -19,38 +19,10 @@ class CharacterViewController: UIViewController{
     
     let dispatchGroup = DispatchGroup()
     var activityView : UIView?
-    
-    var nameTextView: UITextView = {
-        let textView = UITextView()
-        textView.text = "Unknown name"
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .center
-        textView.font = .systemFont(ofSize: 30)
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        return textView
-        
-    }()
-    
-    var birthTextView: UITextView = {
-        let textView = UITextView()
-        textView.text = "Unknown brith year"
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .center
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        return textView
-    }()
-    
-    var heightTextView: UITextView = {
-        let textView = UITextView()
-        textView.text = "Unknown height"
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .center
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        return textView
-    }()
+
+    var nameTextView = TitleTextView()
+    var birthLabel = DescriptionLabel()
+    var heightLabel = DescriptionLabel()
     
     let filmsCollectionIdentifier = "filmCell"
     let filmsCollection: UICollectionView = {
@@ -94,8 +66,8 @@ class CharacterViewController: UIViewController{
         
         
         self.view.addSubview(nameTextView)
-        self.view.addSubview(birthTextView)
-        self.view.addSubview(heightTextView)
+        self.view.addSubview(birthLabel)
+        self.view.addSubview(heightLabel)
         self.view.addSubview(filmsCollection)
         self.view.addSubview(speciesCollection)
         
@@ -113,16 +85,16 @@ class CharacterViewController: UIViewController{
         nameTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         nameTextView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
-        birthTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        birthTextView.topAnchor.constraint(equalTo: nameTextView.bottomAnchor, constant: 15).isActive = true
-        birthTextView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        birthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        birthLabel.topAnchor.constraint(equalTo: nameTextView.bottomAnchor, constant: 15).isActive = true
+        birthLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
-        heightTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        heightTextView.topAnchor.constraint(equalTo: birthTextView.bottomAnchor, constant: 10).isActive = true
-        heightTextView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        heightLabel.topAnchor.constraint(equalTo: birthLabel.bottomAnchor, constant: 10).isActive = true
+        heightLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
         filmsCollection.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        filmsCollection.topAnchor.constraint(equalTo: heightTextView.bottomAnchor, constant: 10).isActive = true
+        filmsCollection.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 40).isActive = true
         filmsCollection.heightAnchor.constraint(equalToConstant: 200).isActive = true
         filmsCollection.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         
@@ -142,15 +114,15 @@ class CharacterViewController: UIViewController{
         }
         
         if let birthYear = selectedCharacter?.birthYear {
-            birthTextView.text = "Birth year: \(birthYear)"
+            birthLabel.text = "Birth year: \(birthYear)"
         } else {
-            birthTextView.text = "Unknown birth year"
+            birthLabel.text = "Unknown birth year"
         }
         
         if let height = selectedCharacter?.height {
-            heightTextView.text = "Height: \(height)"
+            heightLabel.text = "Height: \(height)"
         } else {
-            heightTextView.text = "Unknown height"
+            heightLabel.text = "Unknown height"
         }
         
     }
@@ -164,13 +136,8 @@ class CharacterViewController: UIViewController{
             filmVC.selectedFilm = selectedFilm
         } else if segue.identifier == "goToSpeciesDetailsSegue" {
             let specieVC = segue.destination as! SpecieViewController
-            print("Preparing segue, selected specie is: \(selectedSpecie)")
             specieVC.selectedSpecie = selectedSpecie
         }
-        
-        
-        
-        
     }
     
     // MARK: API methods
@@ -221,9 +188,9 @@ class CharacterViewController: UIViewController{
     
 }
 
+// MARK: CollectionView delegate methods
+
 extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    // MARK: CollectionView delegate methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == filmsCollection {
@@ -237,13 +204,13 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == filmsCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmsCollectionIdentifier, for: indexPath) as! CharactersInfoCollectionViewCell
             cell.backgroundColor = .gray
-            cell.nameTextView.text = charactersFilms[indexPath.row].title
+            cell.nameLabel.text = charactersFilms[indexPath.row].title
             return cell
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: speciesCollectionIdentifier, for: indexPath) as! CharactersInfoCollectionViewCell
         cell.backgroundColor = .red
-        cell.nameTextView.text = charactersSpecies[indexPath.row].name
+        cell.nameLabel.text = charactersSpecies[indexPath.row].name
         return cell
     }
     

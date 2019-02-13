@@ -26,9 +26,16 @@ class SpecieViewController: UIViewController {
     
 
     func setUI() {
-        nameLabel.text = selectedSpecie?.name
-        classificationLabel.text = selectedSpecie?.classification
-        avgHeightLabel.text = selectedSpecie?.averageHeight
+        
+        if let specie = selectedSpecie {
+            nameLabel.text = specie.name
+            classificationLabel.text = "Classification: \(specie.classification)"
+            avgHeightLabel.text = "Average height: \(specie.averageHeight)"
+        } else {
+            nameLabel.text = "No specie selected"
+            classificationLabel.text = ""
+            avgHeightLabel.text = ""
+        }
     }
 
 }

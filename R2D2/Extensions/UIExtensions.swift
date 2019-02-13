@@ -12,7 +12,7 @@ extension UIViewController {
 
     func setActivityView() -> UIView {
         let activityView = UIView.init(frame: self.view.bounds)
-        activityView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        activityView.backgroundColor = UIColor(hexString: "#404040", alpha: 0.5)
         let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.startAnimating()
         activityIndicator.center = activityView.center
@@ -20,7 +20,5 @@ extension UIViewController {
         view.addSubview(activityView)
         
         return activityView
-        
     }
-    
 }

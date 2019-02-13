@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		09493B99D6F31350A0CFB879 /* Pods_R2D2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43046A65BE901817F9BEF66D /* Pods_R2D2.framework */; };
 		CC30BB5D21FA4D3E0012BB87 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC30BB5C21FA4D3E0012BB87 /* Structs.swift */; };
+		CC57CA3522085F5800E38B64 /* TitleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57CA3422085F5800E38B64 /* TitleTextView.swift */; };
+		CC57CA382208661000E38B64 /* DescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC57CA372208661000E38B64 /* DescriptionLabel.swift */; };
 		CCA12EB822049F480096D077 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EB722049F480096D077 /* UIColorExtenstion.swift */; };
 		CCA12EBB2204A0DE0096D077 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EBA2204A0DE0096D077 /* UIExtensions.swift */; };
 		CCA12EBE2204A9120096D077 /* CharactersInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA12EBD2204A9120096D077 /* CharactersInfoCollectionViewCell.swift */; };
@@ -32,6 +34,8 @@
 		1E402600437541590884606E /* Pods-R2D2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-R2D2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-R2D2/Pods-R2D2.debug.xcconfig"; sourceTree = "<group>"; };
 		43046A65BE901817F9BEF66D /* Pods_R2D2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_R2D2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC30BB5C21FA4D3E0012BB87 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		CC57CA3422085F5800E38B64 /* TitleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextView.swift; sourceTree = "<group>"; };
+		CC57CA372208661000E38B64 /* DescriptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
 		CCA12EB722049F480096D077 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		CCA12EBA2204A0DE0096D077 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		CCA12EBD2204A9120096D077 /* CharactersInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersInfoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +78,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CC57CA36220865FB00E38B64 /* UI components */ = {
+			isa = PBXGroup;
+			children = (
+				CC57CA3422085F5800E38B64 /* TitleTextView.swift */,
+				CC57CA372208661000E38B64 /* DescriptionLabel.swift */,
+			);
+			path = "UI components";
+			sourceTree = "<group>";
+		};
 		CCA12EB92204A0D00096D077 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +126,7 @@
 		CCC11CD821F8DA9500395D85 /* R2D2 */ = {
 			isa = PBXGroup;
 			children = (
+				CC57CA36220865FB00E38B64 /* UI components */,
 				CCA12EBC2204A82E0096D077 /* Cells */,
 				CCA12EB92204A0D00096D077 /* Extensions */,
 				CC30BB5C21FA4D3E0012BB87 /* Structs.swift */,
@@ -263,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC57CA3522085F5800E38B64 /* TitleTextView.swift in Sources */,
 				CCAA34B92200CC6F003EDA77 /* StarshipViewController.swift in Sources */,
 				CCA12EBB2204A0DE0096D077 /* UIExtensions.swift in Sources */,
 				CCAA34BB2200CC76003EDA77 /* VehicleViewController.swift in Sources */,
@@ -272,6 +287,7 @@
 				CCA12EBE2204A9120096D077 /* CharactersInfoCollectionViewCell.swift in Sources */,
 				CCAA34B72200CC67003EDA77 /* FilmViewController.swift in Sources */,
 				CC30BB5D21FA4D3E0012BB87 /* Structs.swift in Sources */,
+				CC57CA382208661000E38B64 /* DescriptionLabel.swift in Sources */,
 				CCCBACEA21FA29E20070A91F /* SearchViewController.swift in Sources */,
 				CCC11CDA21F8DA9500395D85 /* AppDelegate.swift in Sources */,
 				CCAA34BF2200CC86003EDA77 /* PlanetViewController.swift in Sources */,

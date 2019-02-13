@@ -23,8 +23,14 @@ class VehicleViewController: UIViewController {
     }
     
     func setUI() {
-        nameLabel.text = selectedVehicle?.name
-        modelLabel.text = selectedVehicle?.model
+        
+        if let vehicle = selectedVehicle {
+            nameLabel.text = vehicle.name
+            modelLabel.text = "Model: \(vehicle.model)"
+        } else {
+            nameLabel.text = "No vehicle selected."
+            modelLabel.text = ""
+        }
     }
 
 }

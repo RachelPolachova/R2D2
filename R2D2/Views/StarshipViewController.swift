@@ -23,9 +23,15 @@ class StarshipViewController: UIViewController {
     }
     
     func setUI() {
-        nameLabel.text = selectedStarship?.name
-        classLabel.text = selectedStarship?.starshipClass
-        modelLabel.text = selectedStarship?.model
+        if let starship = selectedStarship {
+            nameLabel.text = starship.name
+            classLabel.text = "Class: \(starship.starshipClass)"
+            modelLabel.text = "Model: \(starship.model)"
+        } else {
+            nameLabel.text = "No starship selected"
+            classLabel.text = ""
+            modelLabel.text = ""
+        }
     }
 
 }

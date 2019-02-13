@@ -23,8 +23,15 @@ class PlanetViewController: UIViewController {
     }
     
     func setUI() {
-        nameLabel.text = selectedPlanet?.name
-        populationLabel.text = selectedPlanet?.population
+        
+        if let planet = selectedPlanet {
+            nameLabel.text = planet.name
+            populationLabel.text = "Population: \(planet.population)"
+        } else {
+            nameLabel.text = "No planet selected"
+            populationLabel.text = ""
+        }
+        
     }
 
 }
